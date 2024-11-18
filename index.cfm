@@ -47,7 +47,7 @@
                <div class="imageContainer">
                   <img src="./Images/facebookLogo.png" alt="fb"><img src="./Images/googleLogo.png" alt="googleLogo" height="48">
                </div>               
-               <div class="registerContainer">Don't have an account? <span>Register Here</span></div>
+               <div class="registerContainer">Don't have an account? <a href="./signUp.cfm">Register Here</a></div>
             </div>
          </div>            
       </div>
