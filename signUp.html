@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Address Book</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./style/signUp.css">
 </head>
 <body>
    <header>
@@ -34,21 +34,26 @@
             </div>
          </div>
          <div class="loginContainer_right">
-            <div class="loginContainer_right-heading">LOGIN</div>
-            <div class="userName">
-               <input type="text" id="userName" name="userName" placeholder="Username">
+            <div class="loginContainer_right-heading">SIGN UP</div>
+            <div class="inputArea">
+               <input type="text" id="fullName" name="fullName" placeholder="Full Name">
             </div>
-            <div class="password">
-               <input type="password" name="password" id="password" placeholder="Password">
+            <div class="inputArea">
+               <input type="email" name="email" id="email" placeholder="Email ID">
             </div>
-            <div class="bottomContainer">
-               <a href="" class="loginBtn">LOGIN</a>
-               <div class="bottomContainerText">Or Sign In Using</div>
-               <div class="imageContainer">
-                  <img src="./Images/facebookLogo.png" alt="fb"><img src="./Images/googleLogo.png" alt="googleLogo" height="48">
-               </div>               
-               <div class="registerContainer">Don't have an account? <span>Register Here</span></div>
-            </div>
+            <div class="inputArea">
+              <input type="text" name="username" id="username" placeholder="Username">
+           </div>
+           <div class="inputArea">
+           	  <input type="password" name="password" id="password" placeholder="Password">
+           </div>
+			  <div class="inputArea">
+				  <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+		 	  </div>
+				<div class="bottomContainer">
+               <a href="" class="loginBtn">REGISTER</a>
+				</div>
+         </div>            
          </div>            
       </div>
    </main>   

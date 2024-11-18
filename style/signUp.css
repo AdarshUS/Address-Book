@@ -34,7 +34,7 @@ header{
 
 .loginContainer{  
   width: 45%;
-  height: 465px;
+  height: 522px;
   margin-top: 120px;
   display: flex;
   overflow: hidden;
@@ -81,15 +81,11 @@ input{
   padding: 15px;
 }
 
-.userName,.password{
+.inputArea{
   padding-top: 20px;
   border-bottom: 1px solid #ccc;
   width: 87%;
-  margin: 0 25px;
-}
-
-.userName{
-  margin-bottom: 49px;
+  margin: 20px 25px;  
 }
 
 .bottomContainer .loginBtn{
@@ -103,13 +99,6 @@ input{
   text-align: center;
 }
 
-.bottomContainer{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.bottomContainerText,.imageContainer,.registerContainer{
-  text-align: center;
-  padding: 8px;
+.inputArea:has(input:focus) {
+  border-bottom: 1px solid #6984e6;
 }
