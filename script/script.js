@@ -82,3 +82,8 @@ function validate()
 
 	return validInput;
 }
+
+function validateContact()
+{
+	
+}

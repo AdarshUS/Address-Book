@@ -113,3 +113,7 @@ input{
   text-align: center;
   padding: 8px;
 }
+
+.inputArea:has(input:focus) {
+  border-bottom: 1.5px solid #6984e6;
+}

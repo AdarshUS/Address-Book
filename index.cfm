@@ -35,10 +35,10 @@
          </div>
          <div class="loginContainer_right">
             <div class="loginContainer_right-heading">LOGIN</div>
-            <div class="userName">
+            <div class="userName inputArea">
                <input type="text" id="userName" name="userName" placeholder="Username">
             </div>
-            <div class="password">
+            <div class="password inputArea">
                <input type="password" name="password" id="password" placeholder="Password">
             </div>
             <div class="bottomContainer">

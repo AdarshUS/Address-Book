@@ -71,8 +71,7 @@ main{
 
 .contactContainer{
   background-color: #fff;
-  width: 84%;
-  height: 300px;
+  width: 84%; 
 }
 
 .profileName{
@@ -93,6 +92,77 @@ main{
 .contactContainer th{
   color: #337ab9;
 }
+
+.createContactText{
+  background-color: #d1e4fb;
+  color: #1c1c69;
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal-content{
+  width: 600px;  
+}
+
+.required:after {
+  content:" *";
+  color: #337ab9;
+}
+
+table th,td{
+  padding: 10px;
+}
+
+th{
+  color: #337ab9;
+}
+
+input,select{
+  border: none;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #9b9898;
+  padding: 5px;
+}
+
+.personalCntTable{
+  border-top: 2px solid #1c1c69;
+}
+
+.profileIconContainer{
+  background-color: azure;
+}
+
+.personalCntText,.cntDetailsText{
+  color: #337ab9;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 30px 30px 0px 30px;
+}
+
+.inputPhoto{
+  width: 60%;
+}
+
+.formContainer{
+  width: 80%;
+}
+
+.profileIconContainer{
+  width: 20%;
+}
+
+.contactBtn{
+  color: #337ab9;
+  background-color: #fff;
+  border: 2px solid #337ab9;
+  padding: 6px 30px;
+  border-radius: 20px;
+}
+
+.cntTable tr{
+  border-bottom: 1px solid #eee;
+}
+
 
 
 

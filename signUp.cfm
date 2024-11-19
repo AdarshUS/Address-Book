@@ -65,7 +65,7 @@
                </div>
             </form>
             <cfif structKeyExists(form,"submitButton")>              
-               <cfset local.databaseOpObj = new components.DatabaseOperations()>
+               <cfset local.databaseOpObj = new components.userDatabaseOperations()>
                <cfset inserted = local.databaseOpObj.insert(form.fullName,form.email,form.username,form.password,form.profile)>
                <cfif inserted>
                   <p class="added_success">Data Submitted Successfully</p>
