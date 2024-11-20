@@ -36,7 +36,7 @@
          </div>
          <div class="loginContainer_right">
             <div class="loginContainer_right-heading">SIGN UP</div>
-            <form onsubmit="return validate()" method="POST">
+            <form onsubmit="return validate()" method="POST" enctype="multipart/form-data">
                <div class="inputArea">
                   <input type="text" id="fullName" name="fullName" placeholder="Full Name">
                </div>
@@ -66,7 +66,10 @@
             </form>
             <cfif structKeyExists(form,"submitButton")>              
                <cfset local.databaseOpObj = new components.userDatabaseOperations()>
-               <cfset inserted = local.databaseOpObj.insert(form.fullName,form.email,form.username,form.password,form.profile)>
+               <cfset local.uploadRelativePath = "./Images/Uploads/">
+				   <cffile action="upload" destination="#expandPath(local.uploadRelativePath)#" nameconflict="makeUnique" filefield="profile" result="newPath" >
+				   <cfset local.imagePath = local.uploadRelativePath & #newPath.ServerFile#>				
+               <cfset inserted = local.databaseOpObj.insert(form.fullName,form.email,form.username,form.password,local.imagePath)>
                <cfif inserted>
                   <p class="added_success">Data Submitted Successfully</p>
                <cfelse>

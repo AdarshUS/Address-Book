@@ -34,21 +34,35 @@
             </div>
          </div>
          <div class="loginContainer_right">
-            <div class="loginContainer_right-heading">LOGIN</div>
-            <div class="userName inputArea">
-               <input type="text" id="userName" name="userName" placeholder="Username">
-            </div>
-            <div class="password inputArea">
-               <input type="password" name="password" id="password" placeholder="Password">
-            </div>
-            <div class="bottomContainer">
-               <a href="" class="loginBtn">LOGIN</a>
-               <div class="bottomContainerText">Or Sign In Using</div>
-               <div class="imageContainer">
-                  <img src="./Images/facebookLogo.png" alt="fb"><img src="./Images/googleLogo.png" alt="googleLogo" height="48">
-               </div>               
-               <div class="registerContainer">Don't have an account? <a href="./signUp.cfm">Register Here</a></div>
-            </div>
+            <form method="POST">
+               <div class="loginContainer_right-heading">LOGIN</div>
+               <div class="userName inputArea">
+                  <input type="text" id="userName" name="userName" placeholder="Username">
+               </div>
+               <div class="password inputArea">
+                  <input type="password" name="password" id="password" placeholder="Password">
+               </div>
+               <div class="bottomContainer">
+                  <button class="loginBtn" id="submit" name="submit">LOGIN</button>
+                  <div class="bottomContainerText">Or Sign In Using</div>
+                  <div class="imageContainer">
+                     <img src="./Images/facebookLogo.png" alt="fb"><img src="./Images/googleLogo.png" alt="googleLogo" height="48">
+                  </div>               
+                  <div class="registerContainer">Don't have an account? <a href="./signUp.cfm">Register Here</a></div>
+               </div>            
+            </form>
+            <cfif structKeyExists(form,"submit")>
+               <cfset local.userDatabaseObj = new components.userDatabaseOperations()>
+               <cfset local.result = local.userDatabaseObj.verifyUser(form.userName,form.password)>               
+               <cfif local.result.recordCount GT 0>
+                  <cfset session.userName = local.result.userName>
+                  <cfset session.profilePhoto = local.result.profilePhoto>
+                  <cfset session.fullName = local.result.fullName>
+                  <cflocation url="./homePage.cfm" >                  
+               <cfelse>
+                  <p class="error">Incorrect UserName or Password</p>
+               </cfif>
+            </cfif>
          </div>            
       </div>
    </main>   

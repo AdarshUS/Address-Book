@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<cfset local.cntDatabaseObj = createObject("component","components.contactDatabaseOperations")>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -31,9 +33,9 @@
 			<img src="./Images/printer.png" alt="printer" width="36">
 		</div>
 		<div class="contact_profileContainer">
-			<div class="profileContainer d-flex flex-column align-items-">								
-				<img src="./Images/profile.png" alt="profilepic" width="100">
-				<div class="profileName">Merlin Richard</div>
+			<div class="profileContainer d-flex flex-column align-items-center">								
+				<img src="#session.profilePhoto#" alt="profilepic" width="100">
+				<div class="profileName">#session.fullName#</div>
 				<button class="createCntBtn" data-bs-toggle="modal" data-bs-target="##exampleModal" type="button">CREATE CONTACT</button>
 				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -53,9 +55,9 @@
 												<tr>
 													<td>
 														<select name="title" id="title">
-															<option value="">Mr</option>
-															<option value="">Miss</option>
-															<option value="">Mrs</option>													
+															<option value="Mr">Mr</option>
+															<option value="Miss">Miss</option>
+															<option value="Mrs">Mrs</option>													
 														</select>												
 													</td>
 													<td>
@@ -144,20 +146,72 @@
 						</div>
 						</form>
 					</div>
-				</div>				
+				</div>
+				<!--- view modal --->
+				<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">							
+							<div class="modal-body">
+								<div class="mainContainer d-flex">
+									<div class="formContainer w-80 d-flex flex-column">										
+										<div class="createContactText">CONTACT DETAILS</div>
+										<div>
+											<div>
+											<span>Name</span>
+											<span>:</span>
+											<span id="cntName"></span>										
+										</div>
+										<div>
+											<span>Gender</span>
+											<span>:</span>
+											<span id="cntGender"></span>	
+										</div>
+										<div>
+											<span>Date Of Birth</span>
+											<span>:</span>
+											<span id="cntDob"></span>	
+										</div>
+										<div>
+											<span>Address</span>
+											<span>:</span>
+											<span id="cntAddress"></span>	
+										</div>
+										<div>
+											<span>Pincode</span>
+											<span>:</span>
+											<span id="cntPincode"></span>	
+										</div>
+										<div>
+											<span>Email Id</span>
+											<span>:</span>
+											<span id="cntMail"></span>	
+										</div>
+										<div>
+											<span>Phone</span>
+											<span>:</span>
+											<span id="cntPhone"></span>	
+										</div>																		
+									</div>												
+								</div>
+									<div class="profileIconContainer d-flex justify-content-center align-items-start">
+										<img src="./Images/profile.png" alt="profile" width="90">									
+									</div>
+								</div>	
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>								
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<cfset local.cntDatabaseObj = new components.contactDatabaseOperations()>
 			<cfif structKeyExists(form,"submit")>
-				
-				<cfset local.uploadFileObj = new components.uploadFile()>
-
-				<cffile action="upload" destination="C:\ColdFusion2021\cfusion\wwwroot\AddressBook\Images\Uploads" nameconflict="makeUnique" filefield="photo" result="newPath" >
-				
-				<cfset local.imagePath = "C:\ColdFusion2021\cfusion\wwwroot\AddressBook\Images\Uploads\&#newPath.ServerFile#">
-				
+				<cfset local.uploadRelativePath = "./Images/Uploads/">
+				<cffile action="upload" destination="#expandPath(local.uploadRelativePath)#" nameconflict="makeUnique" filefield="photo" result="newPath" >
+				<cfset local.imagePath = local.uploadRelativePath & #newPath.ServerFile#>				
 				<cfset local.result = local.cntDatabaseObj.createContact(form.title,form.firstName,form.lastName,form.gender,form.dob,local.imagePath,form.address,form.street,form.district,form.state,form.nationality,form.pincode,form.email,form.phone)>															
 			</cfif>
-			<cfset local.AllContacts = local.cntDatabaseObj.fetchContacts()>			
+			<cfset local.AllContacts = local.cntDatabaseObj.fetchContacts()>	
 			<div class="contactContainer">
 				<table class="cntTable">															
 					<tr>
@@ -171,20 +225,22 @@
 					</tr>
 					<cfloop query="#local.AllContacts#">
 					<tr>
-						<td><img src="./Images/profile.png" alt="profile" width="70"></td>
+						<td><img src="#local.AllContacts.photo#" alt="profile" width="70"></td>
 						<td>#local.AllContacts.firstName#</td>
 						<td>#local.AllContacts.emailId#</td>
 						<td>#local.AllContacts.phoneNumber#</td>
 						<td><button class="contactBtn">EDIT</button></td>
-						<td><button class="contactBtn">DELETE</button></td>
-						<td><button class="contactBtn">VIEW</button></td>
+						<td><button class="contactBtn" onclick="deleteContact(this)" value="#local.AllContacts.contactId#">DELETE</button></td>
+						<td><button class="contactBtn" data-bs-toggle="modal" data-bs-target="##exampleModal2" value="#local.AllContacts.contactId#" onclick="viewData(this)">VIEW</button></td>
 					</tr>
 					</cfloop>
 				</table>
 			</div>
-		</div>
+		</div>		
 	</main>
 	</cfoutput>
+	<script src="./script/script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>	
 </body>
 </html>

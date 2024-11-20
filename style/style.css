@@ -33,8 +33,7 @@ header{
 }
 
 .loginContainer{  
-  width: 45%;
-  height: 465px;
+  width: 45%;  
   margin-top: 120px;
   display: flex;
   overflow: hidden;
@@ -116,4 +115,8 @@ input{
 
 .inputArea:has(input:focus) {
   border-bottom: 1.5px solid #6984e6;
+}
+
+.error{
+  color: #ff0000;
 }

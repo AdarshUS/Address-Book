@@ -1,6 +1,5 @@
 function validate()
 {
-	alert()
 	let validInput = true;
 	const fullName = document.getElementById("fullName").value;
 	const email = document.getElementById("email").value;
@@ -86,4 +85,56 @@ function validate()
 function validateContact()
 {
 	
+}
+
+function viewData(contactId)
+{
+	$.ajax({
+   	 url: 'components/contactDatabaseOperations.cfc?method=fetchSingleContact',
+   	 type: 'POST',
+   	 data: {contactId:contactId.value},
+   	 success: function(result) {
+		 jsonObj = JSON.parse(result);
+		 document.getElementById("cntName").textContent = jsonObj.FIRSTNAME;
+		 document.getElementById("cntGender").textContent = jsonObj.GENDER;
+		 document.getElementById("cntDob").textContent = jsonObj.DATEOFBIRTH;
+		 document.getElementById("cntAddress").textContent = jsonObj.ADDRESS+" "+jsonObj.STREET+" "+jsonObj.DISTRICT+" "+jsonObj.STATE+" "+jsonObj.NATIONALITY;
+		 document.getElementById("cntPincode").textContent = jsonObj.PINCODE;
+		 document.getElementById("cntMail").textContent = jsonObj.EMAILID;
+		 document.getElementById("cntPhone").textContent = jsonObj.PHONENUMBER;
+   	 },
+   	 error: function() {
+		
+   	 }
+      });
+}
+
+function deleteContact(contactId)
+{	
+	$.ajax({		
+   	 url: 'components/contactDatabaseOperations.cfc?method=deleteContact',
+   	 type: 'POST',
+   	 data: {contactId:contactId.value},
+   	 success: function(returnValue) {			
+			location.reload();
+   	 },
+   	 error: function() {
+		
+   	 }
+      });
+}
+
+function createContact()
+{
+	$.ajax({		
+   	 url: 'components/contactDatabaseOperations.cfc?method=createContact',
+   	 type: 'POST',
+   	 data: {contactId:contactId.value},
+   	 success: function(returnValue) {			
+			location.reload();
+   	 },
+   	 error: function() {
+		
+   	 }
+      });
 }
