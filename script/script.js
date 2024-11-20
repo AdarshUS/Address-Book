@@ -111,11 +111,14 @@ function viewData(contactId)
 
 function deleteContact(contactId)
 {	
+	
 	$.ajax({		
    	 url: 'components/contactDatabaseOperations.cfc?method=deleteContact',
    	 type: 'POST',
    	 data: {contactId:contactId.value},
-   	 success: function(returnValue) {			
+   	 success: function(returnValue) {	
+		 alert()
+
 			location.reload();
    	 },
    	 error: function() {
