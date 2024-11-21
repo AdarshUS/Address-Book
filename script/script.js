@@ -127,17 +127,22 @@ function deleteContact(contactId)
       });
 }
 
-function createContact()
-{
-	$.ajax({		
-   	 url: 'components/contactDatabaseOperations.cfc?method=createContact',
-   	 type: 'POST',
-   	 data: {contactId:contactId.value},
-   	 success: function(returnValue) {			
-			location.reload();
-   	 },
-   	 error: function() {
-		
-   	 }
-      });
-}
+$(document).ready(function() {
+	$('form').on('submit', function(e) {
+			e.preventDefault();
+
+			let formdata = $(this).serialize();
+			$.ajax({
+					url: 'components/contactDatabaseOperations.cfc?method=createContact',
+					type: 'POST',
+					data: formdata,
+					success: function(returnValue) {
+							alert();
+							location.reload();
+					},
+					error: function() {
+							
+					}
+			});
+	});
+});

@@ -40,7 +40,7 @@
 				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<form method="POST" enctype="multipart/form-data">
+							<form method="POST" enctype="multipart/form-data" id="form">
 							<div class="modal-body">
 								<div class="mainContainer d-flex">
 									<div class="formContainer w-80 d-flex flex-column">										
